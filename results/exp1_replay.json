@@ -1,0 +1,3895 @@
+{
+  "experimentName": "Experiment 1: Replay Verification & Header Differencing",
+  "configuration": {
+    "trials": 30,
+    "baselinePort": 4567
+  },
+  "targetFixture": "http://127.0.0.1:4567/ & /fixed",
+  "groundTruthDefinition": "Independent static response headers in fixtureServer.cjs (/fixed has CSP header -> Fixed; / lacks CSP -> Still Present)",
+  "aggregateMetrics": {
+    "TP": 15,
+    "TN": 15,
+    "FP": 0,
+    "FN": 0,
+    "precision": 1,
+    "recall": 1,
+    "f1": 1,
+    "accuracy": 1,
+    "fpr": 0,
+    "fnr": 0,
+    "totalTrials": 30,
+    "meanExecutionTimeMs": 1.116706666666669
+  },
+  "trials": [
+    {
+      "trialIndex": 1,
+      "condition": "REMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-1",
+      "retestEvidenceHash": "EV-RETEST-1",
+      "expectedClassification": "Fixed",
+      "predictedClassification": "Fixed",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+          "status": "modified"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        },
+        {
+          "name": "content-security-policy",
+          "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+          "status": "added"
+        },
+        {
+          "name": "strict-transport-security",
+          "retest": "max-age=31536000; includeSubDomains",
+          "status": "added"
+        },
+        {
+          "name": "x-content-type-options",
+          "retest": "nosniff",
+          "status": "added"
+        },
+        {
+          "name": "x-frame-options",
+          "retest": "DENY",
+          "status": "added"
+        },
+        {
+          "name": "referrer-policy",
+          "retest": "strict-origin-when-cross-origin",
+          "status": "added"
+        },
+        {
+          "name": "permissions-policy",
+          "retest": "camera=(), microphone=()",
+          "status": "added"
+        },
+        {
+          "name": "cross-origin-resource-policy",
+          "retest": "same-origin",
+          "status": "added"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-1",
+        "status": "Fixed",
+        "explanation": "The weakness is no longer observed in the re-tested response (EV-RETEST-1). Fix verified.",
+        "baselineEvidenceId": "EV-BASE-1",
+        "retestEvidenceId": "EV-RETEST-1",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+            "status": "modified"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          },
+          {
+            "name": "content-security-policy",
+            "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+            "status": "added"
+          },
+          {
+            "name": "strict-transport-security",
+            "retest": "max-age=31536000; includeSubDomains",
+            "status": "added"
+          },
+          {
+            "name": "x-content-type-options",
+            "retest": "nosniff",
+            "status": "added"
+          },
+          {
+            "name": "x-frame-options",
+            "retest": "DENY",
+            "status": "added"
+          },
+          {
+            "name": "referrer-policy",
+            "retest": "strict-origin-when-cross-origin",
+            "status": "added"
+          },
+          {
+            "name": "permissions-policy",
+            "retest": "camera=(), microphone=()",
+            "status": "added"
+          },
+          {
+            "name": "cross-origin-resource-policy",
+            "retest": "same-origin",
+            "status": "added"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 11.936200000000014,
+      "error": null
+    },
+    {
+      "trialIndex": 2,
+      "condition": "REMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-2",
+      "retestEvidenceHash": "EV-RETEST-2",
+      "expectedClassification": "Fixed",
+      "predictedClassification": "Fixed",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+          "status": "modified"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        },
+        {
+          "name": "content-security-policy",
+          "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+          "status": "added"
+        },
+        {
+          "name": "strict-transport-security",
+          "retest": "max-age=31536000; includeSubDomains",
+          "status": "added"
+        },
+        {
+          "name": "x-content-type-options",
+          "retest": "nosniff",
+          "status": "added"
+        },
+        {
+          "name": "x-frame-options",
+          "retest": "DENY",
+          "status": "added"
+        },
+        {
+          "name": "referrer-policy",
+          "retest": "strict-origin-when-cross-origin",
+          "status": "added"
+        },
+        {
+          "name": "permissions-policy",
+          "retest": "camera=(), microphone=()",
+          "status": "added"
+        },
+        {
+          "name": "cross-origin-resource-policy",
+          "retest": "same-origin",
+          "status": "added"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-2",
+        "status": "Fixed",
+        "explanation": "The weakness is no longer observed in the re-tested response (EV-RETEST-2). Fix verified.",
+        "baselineEvidenceId": "EV-BASE-2",
+        "retestEvidenceId": "EV-RETEST-2",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+            "status": "modified"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          },
+          {
+            "name": "content-security-policy",
+            "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+            "status": "added"
+          },
+          {
+            "name": "strict-transport-security",
+            "retest": "max-age=31536000; includeSubDomains",
+            "status": "added"
+          },
+          {
+            "name": "x-content-type-options",
+            "retest": "nosniff",
+            "status": "added"
+          },
+          {
+            "name": "x-frame-options",
+            "retest": "DENY",
+            "status": "added"
+          },
+          {
+            "name": "referrer-policy",
+            "retest": "strict-origin-when-cross-origin",
+            "status": "added"
+          },
+          {
+            "name": "permissions-policy",
+            "retest": "camera=(), microphone=()",
+            "status": "added"
+          },
+          {
+            "name": "cross-origin-resource-policy",
+            "retest": "same-origin",
+            "status": "added"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 1.672300000000007,
+      "error": null
+    },
+    {
+      "trialIndex": 3,
+      "condition": "REMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-3",
+      "retestEvidenceHash": "EV-RETEST-3",
+      "expectedClassification": "Fixed",
+      "predictedClassification": "Fixed",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+          "status": "modified"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        },
+        {
+          "name": "content-security-policy",
+          "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+          "status": "added"
+        },
+        {
+          "name": "strict-transport-security",
+          "retest": "max-age=31536000; includeSubDomains",
+          "status": "added"
+        },
+        {
+          "name": "x-content-type-options",
+          "retest": "nosniff",
+          "status": "added"
+        },
+        {
+          "name": "x-frame-options",
+          "retest": "DENY",
+          "status": "added"
+        },
+        {
+          "name": "referrer-policy",
+          "retest": "strict-origin-when-cross-origin",
+          "status": "added"
+        },
+        {
+          "name": "permissions-policy",
+          "retest": "camera=(), microphone=()",
+          "status": "added"
+        },
+        {
+          "name": "cross-origin-resource-policy",
+          "retest": "same-origin",
+          "status": "added"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-3",
+        "status": "Fixed",
+        "explanation": "The weakness is no longer observed in the re-tested response (EV-RETEST-3). Fix verified.",
+        "baselineEvidenceId": "EV-BASE-3",
+        "retestEvidenceId": "EV-RETEST-3",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+            "status": "modified"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          },
+          {
+            "name": "content-security-policy",
+            "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+            "status": "added"
+          },
+          {
+            "name": "strict-transport-security",
+            "retest": "max-age=31536000; includeSubDomains",
+            "status": "added"
+          },
+          {
+            "name": "x-content-type-options",
+            "retest": "nosniff",
+            "status": "added"
+          },
+          {
+            "name": "x-frame-options",
+            "retest": "DENY",
+            "status": "added"
+          },
+          {
+            "name": "referrer-policy",
+            "retest": "strict-origin-when-cross-origin",
+            "status": "added"
+          },
+          {
+            "name": "permissions-policy",
+            "retest": "camera=(), microphone=()",
+            "status": "added"
+          },
+          {
+            "name": "cross-origin-resource-policy",
+            "retest": "same-origin",
+            "status": "added"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 1.2022000000000048,
+      "error": null
+    },
+    {
+      "trialIndex": 4,
+      "condition": "REMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-4",
+      "retestEvidenceHash": "EV-RETEST-4",
+      "expectedClassification": "Fixed",
+      "predictedClassification": "Fixed",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+          "status": "modified"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        },
+        {
+          "name": "content-security-policy",
+          "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+          "status": "added"
+        },
+        {
+          "name": "strict-transport-security",
+          "retest": "max-age=31536000; includeSubDomains",
+          "status": "added"
+        },
+        {
+          "name": "x-content-type-options",
+          "retest": "nosniff",
+          "status": "added"
+        },
+        {
+          "name": "x-frame-options",
+          "retest": "DENY",
+          "status": "added"
+        },
+        {
+          "name": "referrer-policy",
+          "retest": "strict-origin-when-cross-origin",
+          "status": "added"
+        },
+        {
+          "name": "permissions-policy",
+          "retest": "camera=(), microphone=()",
+          "status": "added"
+        },
+        {
+          "name": "cross-origin-resource-policy",
+          "retest": "same-origin",
+          "status": "added"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-4",
+        "status": "Fixed",
+        "explanation": "The weakness is no longer observed in the re-tested response (EV-RETEST-4). Fix verified.",
+        "baselineEvidenceId": "EV-BASE-4",
+        "retestEvidenceId": "EV-RETEST-4",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+            "status": "modified"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          },
+          {
+            "name": "content-security-policy",
+            "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+            "status": "added"
+          },
+          {
+            "name": "strict-transport-security",
+            "retest": "max-age=31536000; includeSubDomains",
+            "status": "added"
+          },
+          {
+            "name": "x-content-type-options",
+            "retest": "nosniff",
+            "status": "added"
+          },
+          {
+            "name": "x-frame-options",
+            "retest": "DENY",
+            "status": "added"
+          },
+          {
+            "name": "referrer-policy",
+            "retest": "strict-origin-when-cross-origin",
+            "status": "added"
+          },
+          {
+            "name": "permissions-policy",
+            "retest": "camera=(), microphone=()",
+            "status": "added"
+          },
+          {
+            "name": "cross-origin-resource-policy",
+            "retest": "same-origin",
+            "status": "added"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 0.9334999999999809,
+      "error": null
+    },
+    {
+      "trialIndex": 5,
+      "condition": "REMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-5",
+      "retestEvidenceHash": "EV-RETEST-5",
+      "expectedClassification": "Fixed",
+      "predictedClassification": "Fixed",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+          "status": "modified"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        },
+        {
+          "name": "content-security-policy",
+          "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+          "status": "added"
+        },
+        {
+          "name": "strict-transport-security",
+          "retest": "max-age=31536000; includeSubDomains",
+          "status": "added"
+        },
+        {
+          "name": "x-content-type-options",
+          "retest": "nosniff",
+          "status": "added"
+        },
+        {
+          "name": "x-frame-options",
+          "retest": "DENY",
+          "status": "added"
+        },
+        {
+          "name": "referrer-policy",
+          "retest": "strict-origin-when-cross-origin",
+          "status": "added"
+        },
+        {
+          "name": "permissions-policy",
+          "retest": "camera=(), microphone=()",
+          "status": "added"
+        },
+        {
+          "name": "cross-origin-resource-policy",
+          "retest": "same-origin",
+          "status": "added"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-5",
+        "status": "Fixed",
+        "explanation": "The weakness is no longer observed in the re-tested response (EV-RETEST-5). Fix verified.",
+        "baselineEvidenceId": "EV-BASE-5",
+        "retestEvidenceId": "EV-RETEST-5",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+            "status": "modified"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          },
+          {
+            "name": "content-security-policy",
+            "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+            "status": "added"
+          },
+          {
+            "name": "strict-transport-security",
+            "retest": "max-age=31536000; includeSubDomains",
+            "status": "added"
+          },
+          {
+            "name": "x-content-type-options",
+            "retest": "nosniff",
+            "status": "added"
+          },
+          {
+            "name": "x-frame-options",
+            "retest": "DENY",
+            "status": "added"
+          },
+          {
+            "name": "referrer-policy",
+            "retest": "strict-origin-when-cross-origin",
+            "status": "added"
+          },
+          {
+            "name": "permissions-policy",
+            "retest": "camera=(), microphone=()",
+            "status": "added"
+          },
+          {
+            "name": "cross-origin-resource-policy",
+            "retest": "same-origin",
+            "status": "added"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 1.4747000000000412,
+      "error": null
+    },
+    {
+      "trialIndex": 6,
+      "condition": "REMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-6",
+      "retestEvidenceHash": "EV-RETEST-6",
+      "expectedClassification": "Fixed",
+      "predictedClassification": "Fixed",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+          "status": "modified"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        },
+        {
+          "name": "content-security-policy",
+          "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+          "status": "added"
+        },
+        {
+          "name": "strict-transport-security",
+          "retest": "max-age=31536000; includeSubDomains",
+          "status": "added"
+        },
+        {
+          "name": "x-content-type-options",
+          "retest": "nosniff",
+          "status": "added"
+        },
+        {
+          "name": "x-frame-options",
+          "retest": "DENY",
+          "status": "added"
+        },
+        {
+          "name": "referrer-policy",
+          "retest": "strict-origin-when-cross-origin",
+          "status": "added"
+        },
+        {
+          "name": "permissions-policy",
+          "retest": "camera=(), microphone=()",
+          "status": "added"
+        },
+        {
+          "name": "cross-origin-resource-policy",
+          "retest": "same-origin",
+          "status": "added"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-6",
+        "status": "Fixed",
+        "explanation": "The weakness is no longer observed in the re-tested response (EV-RETEST-6). Fix verified.",
+        "baselineEvidenceId": "EV-BASE-6",
+        "retestEvidenceId": "EV-RETEST-6",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+            "status": "modified"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          },
+          {
+            "name": "content-security-policy",
+            "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+            "status": "added"
+          },
+          {
+            "name": "strict-transport-security",
+            "retest": "max-age=31536000; includeSubDomains",
+            "status": "added"
+          },
+          {
+            "name": "x-content-type-options",
+            "retest": "nosniff",
+            "status": "added"
+          },
+          {
+            "name": "x-frame-options",
+            "retest": "DENY",
+            "status": "added"
+          },
+          {
+            "name": "referrer-policy",
+            "retest": "strict-origin-when-cross-origin",
+            "status": "added"
+          },
+          {
+            "name": "permissions-policy",
+            "retest": "camera=(), microphone=()",
+            "status": "added"
+          },
+          {
+            "name": "cross-origin-resource-policy",
+            "retest": "same-origin",
+            "status": "added"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 1.118600000000015,
+      "error": null
+    },
+    {
+      "trialIndex": 7,
+      "condition": "REMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-7",
+      "retestEvidenceHash": "EV-RETEST-7",
+      "expectedClassification": "Fixed",
+      "predictedClassification": "Fixed",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+          "status": "modified"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        },
+        {
+          "name": "content-security-policy",
+          "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+          "status": "added"
+        },
+        {
+          "name": "strict-transport-security",
+          "retest": "max-age=31536000; includeSubDomains",
+          "status": "added"
+        },
+        {
+          "name": "x-content-type-options",
+          "retest": "nosniff",
+          "status": "added"
+        },
+        {
+          "name": "x-frame-options",
+          "retest": "DENY",
+          "status": "added"
+        },
+        {
+          "name": "referrer-policy",
+          "retest": "strict-origin-when-cross-origin",
+          "status": "added"
+        },
+        {
+          "name": "permissions-policy",
+          "retest": "camera=(), microphone=()",
+          "status": "added"
+        },
+        {
+          "name": "cross-origin-resource-policy",
+          "retest": "same-origin",
+          "status": "added"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-7",
+        "status": "Fixed",
+        "explanation": "The weakness is no longer observed in the re-tested response (EV-RETEST-7). Fix verified.",
+        "baselineEvidenceId": "EV-BASE-7",
+        "retestEvidenceId": "EV-RETEST-7",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+            "status": "modified"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          },
+          {
+            "name": "content-security-policy",
+            "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+            "status": "added"
+          },
+          {
+            "name": "strict-transport-security",
+            "retest": "max-age=31536000; includeSubDomains",
+            "status": "added"
+          },
+          {
+            "name": "x-content-type-options",
+            "retest": "nosniff",
+            "status": "added"
+          },
+          {
+            "name": "x-frame-options",
+            "retest": "DENY",
+            "status": "added"
+          },
+          {
+            "name": "referrer-policy",
+            "retest": "strict-origin-when-cross-origin",
+            "status": "added"
+          },
+          {
+            "name": "permissions-policy",
+            "retest": "camera=(), microphone=()",
+            "status": "added"
+          },
+          {
+            "name": "cross-origin-resource-policy",
+            "retest": "same-origin",
+            "status": "added"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 0.6865999999999985,
+      "error": null
+    },
+    {
+      "trialIndex": 8,
+      "condition": "REMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-8",
+      "retestEvidenceHash": "EV-RETEST-8",
+      "expectedClassification": "Fixed",
+      "predictedClassification": "Fixed",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+          "status": "modified"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        },
+        {
+          "name": "content-security-policy",
+          "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+          "status": "added"
+        },
+        {
+          "name": "strict-transport-security",
+          "retest": "max-age=31536000; includeSubDomains",
+          "status": "added"
+        },
+        {
+          "name": "x-content-type-options",
+          "retest": "nosniff",
+          "status": "added"
+        },
+        {
+          "name": "x-frame-options",
+          "retest": "DENY",
+          "status": "added"
+        },
+        {
+          "name": "referrer-policy",
+          "retest": "strict-origin-when-cross-origin",
+          "status": "added"
+        },
+        {
+          "name": "permissions-policy",
+          "retest": "camera=(), microphone=()",
+          "status": "added"
+        },
+        {
+          "name": "cross-origin-resource-policy",
+          "retest": "same-origin",
+          "status": "added"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-8",
+        "status": "Fixed",
+        "explanation": "The weakness is no longer observed in the re-tested response (EV-RETEST-8). Fix verified.",
+        "baselineEvidenceId": "EV-BASE-8",
+        "retestEvidenceId": "EV-RETEST-8",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+            "status": "modified"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          },
+          {
+            "name": "content-security-policy",
+            "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+            "status": "added"
+          },
+          {
+            "name": "strict-transport-security",
+            "retest": "max-age=31536000; includeSubDomains",
+            "status": "added"
+          },
+          {
+            "name": "x-content-type-options",
+            "retest": "nosniff",
+            "status": "added"
+          },
+          {
+            "name": "x-frame-options",
+            "retest": "DENY",
+            "status": "added"
+          },
+          {
+            "name": "referrer-policy",
+            "retest": "strict-origin-when-cross-origin",
+            "status": "added"
+          },
+          {
+            "name": "permissions-policy",
+            "retest": "camera=(), microphone=()",
+            "status": "added"
+          },
+          {
+            "name": "cross-origin-resource-policy",
+            "retest": "same-origin",
+            "status": "added"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 0.8952999999999633,
+      "error": null
+    },
+    {
+      "trialIndex": 9,
+      "condition": "REMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-9",
+      "retestEvidenceHash": "EV-RETEST-9",
+      "expectedClassification": "Fixed",
+      "predictedClassification": "Fixed",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+          "status": "modified"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        },
+        {
+          "name": "content-security-policy",
+          "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+          "status": "added"
+        },
+        {
+          "name": "strict-transport-security",
+          "retest": "max-age=31536000; includeSubDomains",
+          "status": "added"
+        },
+        {
+          "name": "x-content-type-options",
+          "retest": "nosniff",
+          "status": "added"
+        },
+        {
+          "name": "x-frame-options",
+          "retest": "DENY",
+          "status": "added"
+        },
+        {
+          "name": "referrer-policy",
+          "retest": "strict-origin-when-cross-origin",
+          "status": "added"
+        },
+        {
+          "name": "permissions-policy",
+          "retest": "camera=(), microphone=()",
+          "status": "added"
+        },
+        {
+          "name": "cross-origin-resource-policy",
+          "retest": "same-origin",
+          "status": "added"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-9",
+        "status": "Fixed",
+        "explanation": "The weakness is no longer observed in the re-tested response (EV-RETEST-9). Fix verified.",
+        "baselineEvidenceId": "EV-BASE-9",
+        "retestEvidenceId": "EV-RETEST-9",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+            "status": "modified"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          },
+          {
+            "name": "content-security-policy",
+            "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+            "status": "added"
+          },
+          {
+            "name": "strict-transport-security",
+            "retest": "max-age=31536000; includeSubDomains",
+            "status": "added"
+          },
+          {
+            "name": "x-content-type-options",
+            "retest": "nosniff",
+            "status": "added"
+          },
+          {
+            "name": "x-frame-options",
+            "retest": "DENY",
+            "status": "added"
+          },
+          {
+            "name": "referrer-policy",
+            "retest": "strict-origin-when-cross-origin",
+            "status": "added"
+          },
+          {
+            "name": "permissions-policy",
+            "retest": "camera=(), microphone=()",
+            "status": "added"
+          },
+          {
+            "name": "cross-origin-resource-policy",
+            "retest": "same-origin",
+            "status": "added"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 0.7663000000000011,
+      "error": null
+    },
+    {
+      "trialIndex": 10,
+      "condition": "REMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-10",
+      "retestEvidenceHash": "EV-RETEST-10",
+      "expectedClassification": "Fixed",
+      "predictedClassification": "Fixed",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+          "status": "modified"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        },
+        {
+          "name": "content-security-policy",
+          "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+          "status": "added"
+        },
+        {
+          "name": "strict-transport-security",
+          "retest": "max-age=31536000; includeSubDomains",
+          "status": "added"
+        },
+        {
+          "name": "x-content-type-options",
+          "retest": "nosniff",
+          "status": "added"
+        },
+        {
+          "name": "x-frame-options",
+          "retest": "DENY",
+          "status": "added"
+        },
+        {
+          "name": "referrer-policy",
+          "retest": "strict-origin-when-cross-origin",
+          "status": "added"
+        },
+        {
+          "name": "permissions-policy",
+          "retest": "camera=(), microphone=()",
+          "status": "added"
+        },
+        {
+          "name": "cross-origin-resource-policy",
+          "retest": "same-origin",
+          "status": "added"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-10",
+        "status": "Fixed",
+        "explanation": "The weakness is no longer observed in the re-tested response (EV-RETEST-10). Fix verified.",
+        "baselineEvidenceId": "EV-BASE-10",
+        "retestEvidenceId": "EV-RETEST-10",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+            "status": "modified"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          },
+          {
+            "name": "content-security-policy",
+            "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+            "status": "added"
+          },
+          {
+            "name": "strict-transport-security",
+            "retest": "max-age=31536000; includeSubDomains",
+            "status": "added"
+          },
+          {
+            "name": "x-content-type-options",
+            "retest": "nosniff",
+            "status": "added"
+          },
+          {
+            "name": "x-frame-options",
+            "retest": "DENY",
+            "status": "added"
+          },
+          {
+            "name": "referrer-policy",
+            "retest": "strict-origin-when-cross-origin",
+            "status": "added"
+          },
+          {
+            "name": "permissions-policy",
+            "retest": "camera=(), microphone=()",
+            "status": "added"
+          },
+          {
+            "name": "cross-origin-resource-policy",
+            "retest": "same-origin",
+            "status": "added"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 0.973700000000008,
+      "error": null
+    },
+    {
+      "trialIndex": 11,
+      "condition": "REMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-11",
+      "retestEvidenceHash": "EV-RETEST-11",
+      "expectedClassification": "Fixed",
+      "predictedClassification": "Fixed",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+          "status": "modified"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        },
+        {
+          "name": "content-security-policy",
+          "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+          "status": "added"
+        },
+        {
+          "name": "strict-transport-security",
+          "retest": "max-age=31536000; includeSubDomains",
+          "status": "added"
+        },
+        {
+          "name": "x-content-type-options",
+          "retest": "nosniff",
+          "status": "added"
+        },
+        {
+          "name": "x-frame-options",
+          "retest": "DENY",
+          "status": "added"
+        },
+        {
+          "name": "referrer-policy",
+          "retest": "strict-origin-when-cross-origin",
+          "status": "added"
+        },
+        {
+          "name": "permissions-policy",
+          "retest": "camera=(), microphone=()",
+          "status": "added"
+        },
+        {
+          "name": "cross-origin-resource-policy",
+          "retest": "same-origin",
+          "status": "added"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-11",
+        "status": "Fixed",
+        "explanation": "The weakness is no longer observed in the re-tested response (EV-RETEST-11). Fix verified.",
+        "baselineEvidenceId": "EV-BASE-11",
+        "retestEvidenceId": "EV-RETEST-11",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+            "status": "modified"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          },
+          {
+            "name": "content-security-policy",
+            "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+            "status": "added"
+          },
+          {
+            "name": "strict-transport-security",
+            "retest": "max-age=31536000; includeSubDomains",
+            "status": "added"
+          },
+          {
+            "name": "x-content-type-options",
+            "retest": "nosniff",
+            "status": "added"
+          },
+          {
+            "name": "x-frame-options",
+            "retest": "DENY",
+            "status": "added"
+          },
+          {
+            "name": "referrer-policy",
+            "retest": "strict-origin-when-cross-origin",
+            "status": "added"
+          },
+          {
+            "name": "permissions-policy",
+            "retest": "camera=(), microphone=()",
+            "status": "added"
+          },
+          {
+            "name": "cross-origin-resource-policy",
+            "retest": "same-origin",
+            "status": "added"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 0.8489000000000146,
+      "error": null
+    },
+    {
+      "trialIndex": 12,
+      "condition": "REMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-12",
+      "retestEvidenceHash": "EV-RETEST-12",
+      "expectedClassification": "Fixed",
+      "predictedClassification": "Fixed",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+          "status": "modified"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        },
+        {
+          "name": "content-security-policy",
+          "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+          "status": "added"
+        },
+        {
+          "name": "strict-transport-security",
+          "retest": "max-age=31536000; includeSubDomains",
+          "status": "added"
+        },
+        {
+          "name": "x-content-type-options",
+          "retest": "nosniff",
+          "status": "added"
+        },
+        {
+          "name": "x-frame-options",
+          "retest": "DENY",
+          "status": "added"
+        },
+        {
+          "name": "referrer-policy",
+          "retest": "strict-origin-when-cross-origin",
+          "status": "added"
+        },
+        {
+          "name": "permissions-policy",
+          "retest": "camera=(), microphone=()",
+          "status": "added"
+        },
+        {
+          "name": "cross-origin-resource-policy",
+          "retest": "same-origin",
+          "status": "added"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-12",
+        "status": "Fixed",
+        "explanation": "The weakness is no longer observed in the re-tested response (EV-RETEST-12). Fix verified.",
+        "baselineEvidenceId": "EV-BASE-12",
+        "retestEvidenceId": "EV-RETEST-12",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+            "status": "modified"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          },
+          {
+            "name": "content-security-policy",
+            "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+            "status": "added"
+          },
+          {
+            "name": "strict-transport-security",
+            "retest": "max-age=31536000; includeSubDomains",
+            "status": "added"
+          },
+          {
+            "name": "x-content-type-options",
+            "retest": "nosniff",
+            "status": "added"
+          },
+          {
+            "name": "x-frame-options",
+            "retest": "DENY",
+            "status": "added"
+          },
+          {
+            "name": "referrer-policy",
+            "retest": "strict-origin-when-cross-origin",
+            "status": "added"
+          },
+          {
+            "name": "permissions-policy",
+            "retest": "camera=(), microphone=()",
+            "status": "added"
+          },
+          {
+            "name": "cross-origin-resource-policy",
+            "retest": "same-origin",
+            "status": "added"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 2.2047000000000025,
+      "error": null
+    },
+    {
+      "trialIndex": 13,
+      "condition": "REMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-13",
+      "retestEvidenceHash": "EV-RETEST-13",
+      "expectedClassification": "Fixed",
+      "predictedClassification": "Fixed",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+          "status": "modified"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        },
+        {
+          "name": "content-security-policy",
+          "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+          "status": "added"
+        },
+        {
+          "name": "strict-transport-security",
+          "retest": "max-age=31536000; includeSubDomains",
+          "status": "added"
+        },
+        {
+          "name": "x-content-type-options",
+          "retest": "nosniff",
+          "status": "added"
+        },
+        {
+          "name": "x-frame-options",
+          "retest": "DENY",
+          "status": "added"
+        },
+        {
+          "name": "referrer-policy",
+          "retest": "strict-origin-when-cross-origin",
+          "status": "added"
+        },
+        {
+          "name": "permissions-policy",
+          "retest": "camera=(), microphone=()",
+          "status": "added"
+        },
+        {
+          "name": "cross-origin-resource-policy",
+          "retest": "same-origin",
+          "status": "added"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-13",
+        "status": "Fixed",
+        "explanation": "The weakness is no longer observed in the re-tested response (EV-RETEST-13). Fix verified.",
+        "baselineEvidenceId": "EV-BASE-13",
+        "retestEvidenceId": "EV-RETEST-13",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+            "status": "modified"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          },
+          {
+            "name": "content-security-policy",
+            "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+            "status": "added"
+          },
+          {
+            "name": "strict-transport-security",
+            "retest": "max-age=31536000; includeSubDomains",
+            "status": "added"
+          },
+          {
+            "name": "x-content-type-options",
+            "retest": "nosniff",
+            "status": "added"
+          },
+          {
+            "name": "x-frame-options",
+            "retest": "DENY",
+            "status": "added"
+          },
+          {
+            "name": "referrer-policy",
+            "retest": "strict-origin-when-cross-origin",
+            "status": "added"
+          },
+          {
+            "name": "permissions-policy",
+            "retest": "camera=(), microphone=()",
+            "status": "added"
+          },
+          {
+            "name": "cross-origin-resource-policy",
+            "retest": "same-origin",
+            "status": "added"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 0.6166999999999803,
+      "error": null
+    },
+    {
+      "trialIndex": 14,
+      "condition": "REMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-14",
+      "retestEvidenceHash": "EV-RETEST-14",
+      "expectedClassification": "Fixed",
+      "predictedClassification": "Fixed",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+          "status": "modified"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        },
+        {
+          "name": "content-security-policy",
+          "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+          "status": "added"
+        },
+        {
+          "name": "strict-transport-security",
+          "retest": "max-age=31536000; includeSubDomains",
+          "status": "added"
+        },
+        {
+          "name": "x-content-type-options",
+          "retest": "nosniff",
+          "status": "added"
+        },
+        {
+          "name": "x-frame-options",
+          "retest": "DENY",
+          "status": "added"
+        },
+        {
+          "name": "referrer-policy",
+          "retest": "strict-origin-when-cross-origin",
+          "status": "added"
+        },
+        {
+          "name": "permissions-policy",
+          "retest": "camera=(), microphone=()",
+          "status": "added"
+        },
+        {
+          "name": "cross-origin-resource-policy",
+          "retest": "same-origin",
+          "status": "added"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-14",
+        "status": "Fixed",
+        "explanation": "The weakness is no longer observed in the re-tested response (EV-RETEST-14). Fix verified.",
+        "baselineEvidenceId": "EV-BASE-14",
+        "retestEvidenceId": "EV-RETEST-14",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+            "status": "modified"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          },
+          {
+            "name": "content-security-policy",
+            "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+            "status": "added"
+          },
+          {
+            "name": "strict-transport-security",
+            "retest": "max-age=31536000; includeSubDomains",
+            "status": "added"
+          },
+          {
+            "name": "x-content-type-options",
+            "retest": "nosniff",
+            "status": "added"
+          },
+          {
+            "name": "x-frame-options",
+            "retest": "DENY",
+            "status": "added"
+          },
+          {
+            "name": "referrer-policy",
+            "retest": "strict-origin-when-cross-origin",
+            "status": "added"
+          },
+          {
+            "name": "permissions-policy",
+            "retest": "camera=(), microphone=()",
+            "status": "added"
+          },
+          {
+            "name": "cross-origin-resource-policy",
+            "retest": "same-origin",
+            "status": "added"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 0.47380000000003974,
+      "error": null
+    },
+    {
+      "trialIndex": 15,
+      "condition": "REMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-15",
+      "retestEvidenceHash": "EV-RETEST-15",
+      "expectedClassification": "Fixed",
+      "predictedClassification": "Fixed",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+          "status": "modified"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        },
+        {
+          "name": "content-security-policy",
+          "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+          "status": "added"
+        },
+        {
+          "name": "strict-transport-security",
+          "retest": "max-age=31536000; includeSubDomains",
+          "status": "added"
+        },
+        {
+          "name": "x-content-type-options",
+          "retest": "nosniff",
+          "status": "added"
+        },
+        {
+          "name": "x-frame-options",
+          "retest": "DENY",
+          "status": "added"
+        },
+        {
+          "name": "referrer-policy",
+          "retest": "strict-origin-when-cross-origin",
+          "status": "added"
+        },
+        {
+          "name": "permissions-policy",
+          "retest": "camera=(), microphone=()",
+          "status": "added"
+        },
+        {
+          "name": "cross-origin-resource-policy",
+          "retest": "same-origin",
+          "status": "added"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-15",
+        "status": "Fixed",
+        "explanation": "The weakness is no longer observed in the re-tested response (EV-RETEST-15). Fix verified.",
+        "baselineEvidenceId": "EV-BASE-15",
+        "retestEvidenceId": "EV-RETEST-15",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "__Host-auth=secret_token_12345; Secure; Path=/; SameSite=Lax; HttpOnly",
+            "status": "modified"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          },
+          {
+            "name": "content-security-policy",
+            "retest": "default-src 'self'; script-src 'self'; frame-ancestors 'none';",
+            "status": "added"
+          },
+          {
+            "name": "strict-transport-security",
+            "retest": "max-age=31536000; includeSubDomains",
+            "status": "added"
+          },
+          {
+            "name": "x-content-type-options",
+            "retest": "nosniff",
+            "status": "added"
+          },
+          {
+            "name": "x-frame-options",
+            "retest": "DENY",
+            "status": "added"
+          },
+          {
+            "name": "referrer-policy",
+            "retest": "strict-origin-when-cross-origin",
+            "status": "added"
+          },
+          {
+            "name": "permissions-policy",
+            "retest": "camera=(), microphone=()",
+            "status": "added"
+          },
+          {
+            "name": "cross-origin-resource-policy",
+            "retest": "same-origin",
+            "status": "added"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 0.49130000000002383,
+      "error": null
+    },
+    {
+      "trialIndex": 16,
+      "condition": "UNREMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-16",
+      "retestEvidenceHash": "EV-RETEST-16",
+      "expectedClassification": "Still Present",
+      "predictedClassification": "Still Present",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "auth_token=raw_session_abc12345",
+          "status": "unchanged"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-16",
+        "status": "Still Present",
+        "explanation": "The vulnerability was re-observed in the new response (EV-RETEST-16). Remediation is incomplete.",
+        "baselineEvidenceId": "EV-BASE-16",
+        "retestEvidenceId": "EV-RETEST-16",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "auth_token=raw_session_abc12345",
+            "status": "unchanged"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 0.6447999999999752,
+      "error": null
+    },
+    {
+      "trialIndex": 17,
+      "condition": "UNREMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-17",
+      "retestEvidenceHash": "EV-RETEST-17",
+      "expectedClassification": "Still Present",
+      "predictedClassification": "Still Present",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "auth_token=raw_session_abc12345",
+          "status": "unchanged"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-17",
+        "status": "Still Present",
+        "explanation": "The vulnerability was re-observed in the new response (EV-RETEST-17). Remediation is incomplete.",
+        "baselineEvidenceId": "EV-BASE-17",
+        "retestEvidenceId": "EV-RETEST-17",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "auth_token=raw_session_abc12345",
+            "status": "unchanged"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 0.5725999999999658,
+      "error": null
+    },
+    {
+      "trialIndex": 18,
+      "condition": "UNREMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-18",
+      "retestEvidenceHash": "EV-RETEST-18",
+      "expectedClassification": "Still Present",
+      "predictedClassification": "Still Present",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "auth_token=raw_session_abc12345",
+          "status": "unchanged"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-18",
+        "status": "Still Present",
+        "explanation": "The vulnerability was re-observed in the new response (EV-RETEST-18). Remediation is incomplete.",
+        "baselineEvidenceId": "EV-BASE-18",
+        "retestEvidenceId": "EV-RETEST-18",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "auth_token=raw_session_abc12345",
+            "status": "unchanged"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 0.455600000000004,
+      "error": null
+    },
+    {
+      "trialIndex": 19,
+      "condition": "UNREMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-19",
+      "retestEvidenceHash": "EV-RETEST-19",
+      "expectedClassification": "Still Present",
+      "predictedClassification": "Still Present",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "auth_token=raw_session_abc12345",
+          "status": "unchanged"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-19",
+        "status": "Still Present",
+        "explanation": "The vulnerability was re-observed in the new response (EV-RETEST-19). Remediation is incomplete.",
+        "baselineEvidenceId": "EV-BASE-19",
+        "retestEvidenceId": "EV-RETEST-19",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "auth_token=raw_session_abc12345",
+            "status": "unchanged"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 0.44580000000001974,
+      "error": null
+    },
+    {
+      "trialIndex": 20,
+      "condition": "UNREMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-20",
+      "retestEvidenceHash": "EV-RETEST-20",
+      "expectedClassification": "Still Present",
+      "predictedClassification": "Still Present",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "auth_token=raw_session_abc12345",
+          "status": "unchanged"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-20",
+        "status": "Still Present",
+        "explanation": "The vulnerability was re-observed in the new response (EV-RETEST-20). Remediation is incomplete.",
+        "baselineEvidenceId": "EV-BASE-20",
+        "retestEvidenceId": "EV-RETEST-20",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "auth_token=raw_session_abc12345",
+            "status": "unchanged"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 0.44769999999999754,
+      "error": null
+    },
+    {
+      "trialIndex": 21,
+      "condition": "UNREMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-21",
+      "retestEvidenceHash": "EV-RETEST-21",
+      "expectedClassification": "Still Present",
+      "predictedClassification": "Still Present",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "auth_token=raw_session_abc12345",
+          "status": "unchanged"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-21",
+        "status": "Still Present",
+        "explanation": "The vulnerability was re-observed in the new response (EV-RETEST-21). Remediation is incomplete.",
+        "baselineEvidenceId": "EV-BASE-21",
+        "retestEvidenceId": "EV-RETEST-21",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "auth_token=raw_session_abc12345",
+            "status": "unchanged"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 0.44079999999996744,
+      "error": null
+    },
+    {
+      "trialIndex": 22,
+      "condition": "UNREMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-22",
+      "retestEvidenceHash": "EV-RETEST-22",
+      "expectedClassification": "Still Present",
+      "predictedClassification": "Still Present",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "auth_token=raw_session_abc12345",
+          "status": "unchanged"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-22",
+        "status": "Still Present",
+        "explanation": "The vulnerability was re-observed in the new response (EV-RETEST-22). Remediation is incomplete.",
+        "baselineEvidenceId": "EV-BASE-22",
+        "retestEvidenceId": "EV-RETEST-22",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "auth_token=raw_session_abc12345",
+            "status": "unchanged"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 0.5801999999999907,
+      "error": null
+    },
+    {
+      "trialIndex": 23,
+      "condition": "UNREMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-23",
+      "retestEvidenceHash": "EV-RETEST-23",
+      "expectedClassification": "Still Present",
+      "predictedClassification": "Still Present",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "auth_token=raw_session_abc12345",
+          "status": "unchanged"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-23",
+        "status": "Still Present",
+        "explanation": "The vulnerability was re-observed in the new response (EV-RETEST-23). Remediation is incomplete.",
+        "baselineEvidenceId": "EV-BASE-23",
+        "retestEvidenceId": "EV-RETEST-23",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "auth_token=raw_session_abc12345",
+            "status": "unchanged"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 0.4375,
+      "error": null
+    },
+    {
+      "trialIndex": 24,
+      "condition": "UNREMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-24",
+      "retestEvidenceHash": "EV-RETEST-24",
+      "expectedClassification": "Still Present",
+      "predictedClassification": "Still Present",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "auth_token=raw_session_abc12345",
+          "status": "unchanged"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-24",
+        "status": "Still Present",
+        "explanation": "The vulnerability was re-observed in the new response (EV-RETEST-24). Remediation is incomplete.",
+        "baselineEvidenceId": "EV-BASE-24",
+        "retestEvidenceId": "EV-RETEST-24",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "auth_token=raw_session_abc12345",
+            "status": "unchanged"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 0.41730000000001155,
+      "error": null
+    },
+    {
+      "trialIndex": 25,
+      "condition": "UNREMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-25",
+      "retestEvidenceHash": "EV-RETEST-25",
+      "expectedClassification": "Still Present",
+      "predictedClassification": "Still Present",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "auth_token=raw_session_abc12345",
+          "status": "unchanged"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-25",
+        "status": "Still Present",
+        "explanation": "The vulnerability was re-observed in the new response (EV-RETEST-25). Remediation is incomplete.",
+        "baselineEvidenceId": "EV-BASE-25",
+        "retestEvidenceId": "EV-RETEST-25",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "auth_token=raw_session_abc12345",
+            "status": "unchanged"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 0.4234000000000151,
+      "error": null
+    },
+    {
+      "trialIndex": 26,
+      "condition": "UNREMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-26",
+      "retestEvidenceHash": "EV-RETEST-26",
+      "expectedClassification": "Still Present",
+      "predictedClassification": "Still Present",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "auth_token=raw_session_abc12345",
+          "status": "unchanged"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-26",
+        "status": "Still Present",
+        "explanation": "The vulnerability was re-observed in the new response (EV-RETEST-26). Remediation is incomplete.",
+        "baselineEvidenceId": "EV-BASE-26",
+        "retestEvidenceId": "EV-RETEST-26",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "auth_token=raw_session_abc12345",
+            "status": "unchanged"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 0.5187999999999988,
+      "error": null
+    },
+    {
+      "trialIndex": 27,
+      "condition": "UNREMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-27",
+      "retestEvidenceHash": "EV-RETEST-27",
+      "expectedClassification": "Still Present",
+      "predictedClassification": "Still Present",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "auth_token=raw_session_abc12345",
+          "status": "unchanged"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-27",
+        "status": "Still Present",
+        "explanation": "The vulnerability was re-observed in the new response (EV-RETEST-27). Remediation is incomplete.",
+        "baselineEvidenceId": "EV-BASE-27",
+        "retestEvidenceId": "EV-RETEST-27",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "auth_token=raw_session_abc12345",
+            "status": "unchanged"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 0.48759999999998627,
+      "error": null
+    },
+    {
+      "trialIndex": 28,
+      "condition": "UNREMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-28",
+      "retestEvidenceHash": "EV-RETEST-28",
+      "expectedClassification": "Still Present",
+      "predictedClassification": "Still Present",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "auth_token=raw_session_abc12345",
+          "status": "unchanged"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-28",
+        "status": "Still Present",
+        "explanation": "The vulnerability was re-observed in the new response (EV-RETEST-28). Remediation is incomplete.",
+        "baselineEvidenceId": "EV-BASE-28",
+        "retestEvidenceId": "EV-RETEST-28",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "auth_token=raw_session_abc12345",
+            "status": "unchanged"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 0.4337000000000444,
+      "error": null
+    },
+    {
+      "trialIndex": 29,
+      "condition": "UNREMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-29",
+      "retestEvidenceHash": "EV-RETEST-29",
+      "expectedClassification": "Still Present",
+      "predictedClassification": "Still Present",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "auth_token=raw_session_abc12345",
+          "status": "unchanged"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-29",
+        "status": "Still Present",
+        "explanation": "The vulnerability was re-observed in the new response (EV-RETEST-29). Remediation is incomplete.",
+        "baselineEvidenceId": "EV-BASE-29",
+        "retestEvidenceId": "EV-RETEST-29",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "auth_token=raw_session_abc12345",
+            "status": "unchanged"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 0.43840000000000146,
+      "error": null
+    },
+    {
+      "trialIndex": 30,
+      "condition": "UNREMEDIATED_ROUTE",
+      "baselineEvidenceHash": "EV-BASE-30",
+      "retestEvidenceHash": "EV-RETEST-30",
+      "expectedClassification": "Still Present",
+      "predictedClassification": "Still Present",
+      "headerDifferences": [
+        {
+          "name": "content-type",
+          "baseline": "text/html; charset=utf-8",
+          "retest": "text/html; charset=utf-8",
+          "status": "unchanged"
+        },
+        {
+          "name": "set-cookie",
+          "baseline": "auth_token=raw_session_abc12345",
+          "retest": "auth_token=raw_session_abc12345",
+          "status": "unchanged"
+        },
+        {
+          "name": "date",
+          "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+          "status": "unchanged"
+        },
+        {
+          "name": "connection",
+          "baseline": "keep-alive",
+          "retest": "keep-alive",
+          "status": "unchanged"
+        },
+        {
+          "name": "keep-alive",
+          "baseline": "timeout=5",
+          "retest": "timeout=5",
+          "status": "unchanged"
+        },
+        {
+          "name": "transfer-encoding",
+          "baseline": "chunked",
+          "retest": "chunked",
+          "status": "unchanged"
+        }
+      ],
+      "replayComparisonResult": {
+        "findingId": "FND-CSP-30",
+        "status": "Still Present",
+        "explanation": "The vulnerability was re-observed in the new response (EV-RETEST-30). Remediation is incomplete.",
+        "baselineEvidenceId": "EV-BASE-30",
+        "retestEvidenceId": "EV-RETEST-30",
+        "headerDiff": [
+          {
+            "name": "content-type",
+            "baseline": "text/html; charset=utf-8",
+            "retest": "text/html; charset=utf-8",
+            "status": "unchanged"
+          },
+          {
+            "name": "set-cookie",
+            "baseline": "auth_token=raw_session_abc12345",
+            "retest": "auth_token=raw_session_abc12345",
+            "status": "unchanged"
+          },
+          {
+            "name": "date",
+            "baseline": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "retest": "Tue, 22 Sep 2026 18:58:25 GMT",
+            "status": "unchanged"
+          },
+          {
+            "name": "connection",
+            "baseline": "keep-alive",
+            "retest": "keep-alive",
+            "status": "unchanged"
+          },
+          {
+            "name": "keep-alive",
+            "baseline": "timeout=5",
+            "retest": "timeout=5",
+            "status": "unchanged"
+          },
+          {
+            "name": "transfer-encoding",
+            "baseline": "chunked",
+            "retest": "chunked",
+            "status": "unchanged"
+          }
+        ]
+      },
+      "isCorrect": true,
+      "executionTimeMs": 0.4621999999999957,
+      "error": null
+    }
+  ]
+}

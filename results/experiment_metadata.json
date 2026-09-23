@@ -1,0 +1,36 @@
+{
+  "gitCommit": "a3bb957454684b647884ac15ca8ed9d413139a3d",
+  "projectVersion": "0.1.0",
+  "fixtureVersion": "electron/fixtureServer.cjs (Port 4567)",
+  "nodeVersion": "v24.20.0",
+  "os": "Windows_NT 10.0.26200 (x64, win32)",
+  "timestamp": "2026-09-22T18:58:25.244Z",
+  "experimentConfiguration": {
+    "exp1": {
+      "trials": 30,
+      "description": "Replay Verification & Header Differencing"
+    },
+    "exp2": {
+      "trials": 50,
+      "description": "Inert Canary Reflection Context Precision"
+    },
+    "exp3": {
+      "trials": 30,
+      "description": "Passive Security Rule Coverage"
+    },
+    "exp5": {
+      "trials": 20,
+      "description": "External Security Scanner Log Harmonization"
+    }
+  },
+  "experimentsExecuted": [
+    "Exp 1",
+    "Exp 2",
+    "Exp 3",
+    "Exp 5"
+  ],
+  "experimentsBlocked": [
+    "Exp 4: Local LLM Disaggregated Evaluation (Ollama not installed/running)",
+    "Exp 6: Multi-Model Comparison (Ollama not installed/running)"
+  ]
+}

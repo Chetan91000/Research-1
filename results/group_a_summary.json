@@ -1,0 +1,63 @@
+{
+  "timestamp": "2026-09-22T18:58:25.244Z",
+  "gitCommit": "a3bb957454684b647884ac15ca8ed9d413139a3d",
+  "groupAOverallStatus": "SUCCESS",
+  "aggregateMetrics": {
+    "exp1_replay": {
+      "TP": 15,
+      "TN": 15,
+      "FP": 0,
+      "FN": 0,
+      "precision": 1,
+      "recall": 1,
+      "f1": 1,
+      "accuracy": 1,
+      "fpr": 0,
+      "fnr": 0,
+      "totalTrials": 30,
+      "meanExecutionTimeMs": 1.116706666666669
+    },
+    "exp2_canary": {
+      "TP": 40,
+      "TN": 10,
+      "FP": 0,
+      "FN": 0,
+      "precision": 1,
+      "recall": 1,
+      "f1": 1,
+      "accuracy": 1,
+      "fpr": 0,
+      "fnr": 0,
+      "totalTrials": 50,
+      "meanExecutionTimeMs": 0.2566819999999984
+    },
+    "exp3_rules": {
+      "TP": 15,
+      "TN": 15,
+      "FP": 0,
+      "FN": 0,
+      "precision": 1,
+      "recall": 1,
+      "f1": 1,
+      "accuracy": 1,
+      "fpr": 0,
+      "fnr": 0,
+      "totalTrials": 30,
+      "meanExecutionTimeMs": 0.3600966666666731
+    },
+    "exp5_scanner": {
+      "TP": 20,
+      "TN": 0,
+      "FP": 0,
+      "FN": 0,
+      "precision": 1,
+      "recall": 1,
+      "f1": 1,
+      "accuracy": 1,
+      "fpr": 0,
+      "fnr": 0,
+      "totalTrials": 20,
+      "meanExecutionTimeMs": 0.06100999999999886
+    }
+  }
+}
